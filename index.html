@@ -261,12 +261,11 @@
                     { id: 'l4_2', name: 'ك كفته كندوز', price: 600 },
                     { id: 'l5', name: 'ك كفته بانيه', price: 700 },
                     { id: 'l6', name: 'سكالوب كندوز', price: 800 },
-                    { id: 'l7', name: 'رايب اي كندوز', price: 800 },
+                    { id: 'l7', name: 'ستيك ريب آي', price: 800 },
                     { id: 'l8', name: 'ك بيكاتا', price: 750 },
                     { id: 'l9', name: 'ك كفته أرز جملي', price: 400 },
                     { id: 'l9_2', name: 'ك كفته رز كندوز', price: 600 },
                     { id: 'l10', name: 'ك سجق بلدي', price: 600 },
-                    { id: 'l11', name: 'ك كبده بلدي', price: 750 },
                     { id: 'l11_2', name: 'ك كبده وقلب وكلاوي', price: 750 },
                     { id: 'l11_3', name: 'ك كبده صافي كندوز', price: 900 },
                     { id: 'l12', name: 'كيلو لحمه بارده', price: 800 },
@@ -342,7 +341,7 @@
                     { id: 'a2', name: 'جلاش ملفوف لحمه', price: 450 },
                     { id: 'a3', name: 'سمبوسك لحمه', price: 450, note: "25 قطعه" },
                     { id: 'a4', name: 'سمبوسك جبنه', price: 400, note: "25 قطعه" },
-                    { id: 'a5', name: 'ك سمبوسه شاورمه', price: 350, note: "25 قطعه" },
+                    { id: 'a5', name: 'سمبوسه شاورمه', price: 450, note: "25 قطعه" },
                     { id: 'a6', name: 'جلاش ملفوف جبنه', price: 400 },
                     { id: 'a7', name: 'علبه كشك', price: 200 },
                     { id: 'a8', name: 'علبه ملوخيه', price: 100 },
@@ -467,7 +466,8 @@
                     `;
 
                     cat.items.forEach(item => {
-                        const priceDisplay = item.note ? item.note : `${item.price} <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">ج.م</span>`;
+                        const priceDisplay = item.price > 0 ? `${item.price} <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">ج.م</span>` : `<span class="text-sm font-bold text-primary">${item.note}</span>`;
+                        const noteBadge = (item.note && item.price > 0) ? `<span class="inline-flex items-center bg-gray-50 dark:bg-darkBg text-gray-500 dark:text-gray-400 text-xs px-2 py-1 rounded-md mt-1 border border-gray-200 dark:border-gray-700"><i class="fa-solid fa-tag ml-1 text-[10px]"></i>${item.note}</span>` : '';
                         
                         htmlContent += `
                             <div class="menu-card bg-white dark:bg-darkCard rounded-2xl p-5 border border-gray-100 dark:border-gray-800 flex flex-col justify-between h-full relative overflow-hidden group shadow-sm hover:shadow-md transition-all">
@@ -475,6 +475,7 @@
                                 
                                 <div>
                                     <h3 class="text-lg font-bold text-secondary dark:text-beige mb-1">${item.name}</h3>
+                                    ${noteBadge}
                                 </div>
                                 <div class="mt-4 flex justify-between items-center border-t border-dashed border-gray-200 dark:border-gray-700 pt-4">
                                     <div class="text-xl font-extrabold text-secondary dark:text-beige">${priceDisplay}</div>
@@ -534,7 +535,8 @@
                     `;
 
                     filteredItems.forEach(item => {
-                        const priceDisplay = item.note ? item.note : `${item.price} <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">ج.م</span>`;
+                        const priceDisplay = item.price > 0 ? `${item.price} <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">ج.م</span>` : `<span class="text-sm font-bold text-primary">${item.note}</span>`;
+                        const noteBadge = (item.note && item.price > 0) ? `<span class="inline-flex items-center bg-gray-50 dark:bg-darkBg text-gray-500 dark:text-gray-400 text-xs px-2 py-1 rounded-md mt-1 border border-gray-200 dark:border-gray-700"><i class="fa-solid fa-tag ml-1 text-[10px]"></i>${item.note}</span>` : '';
                         
                         htmlContent += `
                             <div class="menu-card bg-white dark:bg-darkCard rounded-2xl p-5 border border-gray-100 dark:border-gray-800 flex flex-col justify-between h-full relative overflow-hidden group shadow-sm hover:shadow-md transition-all">
@@ -543,6 +545,7 @@
                                 <div>
                                     <span class="text-xs font-bold text-primary bg-amber-50 dark:bg-darkBg dark:border dark:border-gray-700 px-2 py-1 rounded-md mb-2 inline-block">${item.catName}</span>
                                     <h3 class="text-lg font-bold text-secondary dark:text-beige mb-1">${item.name}</h3>
+                                    ${noteBadge}
                                 </div>
                                 <div class="mt-4 flex justify-between items-center border-t border-dashed border-gray-200 dark:border-gray-700 pt-4">
                                     <div class="text-xl font-extrabold text-secondary dark:text-beige">${priceDisplay}</div>
@@ -639,12 +642,14 @@
                 const itemTotal = item.price * item.qty;
                 total += itemTotal;
                 
-                const priceText = item.note ? `<span class="text-xs text-primary">${item.note}</span>` : `${itemTotal} ج.م`;
+                const priceText = item.price > 0 ? `${itemTotal} ج.م` : `<span class="text-xs text-primary">${item.note}</span>`;
+                const noteText = (item.note && item.price > 0) ? `<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5"><i class="fa-solid fa-tag text-[10px] ml-1"></i>${item.note}</div>` : '';
 
                 itemsContainer.innerHTML += `
                     <div class="flex justify-between items-center py-4 border-b border-gray-100 dark:border-gray-800 last:border-0">
                         <div class="flex-1">
                             <h4 class="font-bold text-secondary dark:text-beige text-sm md:text-base">${item.name}</h4>
+                            ${noteText}
                             <div class="font-bold text-primary mt-1">${priceText}</div>
                         </div>
                         <div class="flex items-center gap-3 ml-4">
@@ -717,10 +722,12 @@
                 const itemTotal = item.price * item.qty;
                 total += itemTotal;
                 
-                if(item.note) hasCustomPrice = true;
+                if(item.price === 0 && item.note) hasCustomPrice = true;
                 
-                let priceStr = item.note ? `(${item.note})` : `${itemTotal} ج.م`;
-                message += `▪️ ${item.name} \n   الكمية: ${item.qty} ✖️ ${priceStr}\n\n`;
+                let priceStr = item.price > 0 ? `${itemTotal} ج.م` : `(${item.note})`;
+                let noteStr = (item.note && item.price > 0) ? ` (${item.note})` : '';
+                
+                message += `▪️ ${item.name}${noteStr}\n   الكمية: ${item.qty} ✖️ ${priceStr}\n\n`;
             });
 
             message += `\n───────────────\n`;
@@ -784,5 +791,6 @@
     </script>
 </body>
 </html>
+
 
 
