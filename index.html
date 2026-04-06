@@ -254,9 +254,9 @@
                 icon: "fa-drumstick-bite",
                 image: "https://images.unsplash.com/photo-1603048297172-c92544798d5e?w=150&h=150&fit=crop",
                 items: [
-                    { id: 'l1', name: 'كباب ضاني صافي', price: 1000 },
-                    { id: 'l2', name: 'ريش ضاني صافي', price: 1000 },
-                    { id: 'l3', name: 'مشكل ضاني', price: 850, note: "كباب + كفته + ريش" },
+                    { id: 'l1', name: 'كباب ضاني صافي', price: 1100 },
+                    { id: 'l2', name: 'ريش ضاني صافي', price: 1100 },
+                    { id: 'l3', name: 'مشكل ضاني', price: 900, note: "كباب + كفته + ريش" },
                     { id: 'l4', name: 'ك كفته ضاني', price: 800 },
                     { id: 'l4_2', name: 'ك كفته كندوز', price: 600 },
                     { id: 'l5', name: 'ك كفته بانيه', price: 700 },
@@ -267,6 +267,8 @@
                     { id: 'l9_2', name: 'ك كفته رز كندوز', price: 600 },
                     { id: 'l10', name: 'ك سجق بلدي', price: 600 },
                     { id: 'l11', name: 'ك كبده بلدي', price: 750 },
+                    { id: 'l11_2', name: 'ك كبده وقلب وكلاوي', price: 750 },
+                    { id: 'l11_3', name: 'ك كبده صافي كندوز', price: 900 },
                     { id: 'l12', name: 'كيلو لحمه بارده', price: 800 },
                     { id: 'l13', name: 'ورقه لحمه', price: 500 },
                     { id: 'l14', name: 'رغيف حواوشي لحم بلدي', price: 100 },
@@ -338,8 +340,8 @@
                 items: [
                     { id: 'a1', name: 'خرشوف لحمه وموزريلا', price: 450, note: "6 قطع" },
                     { id: 'a2', name: 'جلاش ملفوف لحمه', price: 450 },
-                    { id: 'a3', name: 'ك سمبوسك لحم', price: 400, note: "25 قطعه" },
-                    { id: 'a4', name: 'ك سمبوسك جبنه', price: 300, note: "25 قطعه" },
+                    { id: 'a3', name: 'سمبوسك لحمه', price: 450, note: "25 قطعه" },
+                    { id: 'a4', name: 'سمبوسك جبنه', price: 400, note: "25 قطعه" },
                     { id: 'a5', name: 'ك سمبوسه شاورمه', price: 350, note: "25 قطعه" },
                     { id: 'a6', name: 'جلاش ملفوف جبنه', price: 400 },
                     { id: 'a7', name: 'علبه كشك', price: 200 },
@@ -354,8 +356,12 @@
                 icon: "fa-mug-hot",
                 image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=150&h=150&fit=crop",
                 items: [
-                    { id: 'so1', name: 'شوربه خرشوف ساده', price: 150 },
-                    { id: 'so2', name: 'شوربه خرشوف بالمشروم', price: 200 },
+                    { id: 'so1', name: 'شوربه خرشوف', price: 150 },
+                    { id: 'so2', name: 'شوربه عصفور', price: 75 },
+                    { id: 'so3', name: 'شوربه خضار فريش', price: 150 },
+                    { id: 'so4', name: 'شوربه كريمه ساده', price: 100 },
+                    { id: 'so5', name: 'شوربه كريمه بالفراخ', price: 200 },
+                    { id: 'so6', name: 'شوربه عدس', price: 100 },
                 ]
             },
             {
@@ -497,10 +503,7 @@
             }
 
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.replace('bg-primary', 'bg-white');
-                btn.classList.replace('text-white', 'text-gray-600');
-                btn.classList.add('border', 'border-gray-200');
-                btn.classList.remove('shadow-md');
+                btn.className = `cat-btn bg-white dark:bg-darkBg text-gray-600 dark:text-darkBeige border border-gray-200 dark:border-gray-800 hover:border-primary dark:hover:border-primary pl-4 pr-1.5 py-1.5 rounded-full font-bold text-sm transition whitespace-nowrap flex items-center gap-2`;
             });
 
             let allItems = [];
@@ -781,6 +784,5 @@
     </script>
 </body>
 </html>
-
 
 
